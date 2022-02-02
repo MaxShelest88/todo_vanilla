@@ -68,6 +68,11 @@ li {
 	justify-content: space-between;
 }
 
+.todo__item:hover .todo__delete{
+	display: block;
+}
+
 .todo__delete{
 	cursor: pointer;
+	display: none;
 }
