@@ -107,6 +107,7 @@ li {
 }
 
 .todo__item:hover .todo__delete {
+	display: block;
 }
 
 .todo__delete {
@@ -119,6 +120,7 @@ li {
 	top: 50%;
 	right: 0;
 	transform: translate(0%, -50%);
+	z-index: 5;
 }
 .todo__title {
 	margin: 0px 0px 20px 0px;

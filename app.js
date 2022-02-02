@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const form = document.querySelector('form')
 	const input = form.querySelector('.form__input input');
 	const todoList = document.querySelector('.todo__list');
-	const checkbox = document.querySelectorAll(".chebox__input")
 	const todoArr = []
+	const toZero = (num) => (num < 10) ? `0${num}` : num
 
 	class Todo {
 		constructor(value) {
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			todoList.innerHTML = ''
 			todoArr.forEach((item, index) => {
 				todoList.innerHTML += `<li class="todo__item"><label class="checkbox">
-				<input data-error="Ошибка" class="checkbox__input" type="checkbox" value="1" name="form[]"><span class="checkbox__text"></span>
-			</label><span class="item__text">${index + 1} ${item}</span><span class="todo__delete">x</span></li>`
+				<input class="checkbox__input" type="checkbox" value="1" name="form[]"><span class="checkbox__text"></span>
+			</label><span class="item__text">${toZero(index + 1)} ${item}</span><span class="todo__delete">x</span></li>`
 			})
 			todoList.childNodes.forEach((el, index) => {
 				el.addEventListener('click', (e) => {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						this.createTodo()
 					}
 					if (e.target.classList.contains('checkbox__input')) {
-							el.classList.toggle('checked')
+						el.classList.toggle('checked')
 					}
 				})
 			})
@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		newTodo.createTodo()
 		e.target.reset()
 	})
-
-
 
 })
 
