@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (!item.checked) {
 					todoList.innerHTML += `<li class="todo__item"><label class="checkbox">
 				<input class="checkbox__input" type="checkbox" value="1" name="form[]"><span class="checkbox__text"></span>
-			</label><span class="item__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
+			</label><span class="todo__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
 				} else {
 					todoList.innerHTML += `<li class="todo__item checked"><label class="checkbox">
 				<input class="checkbox__input" type="checkbox" value="1" name="form[]" checked><span class="checkbox__text"></span>
-			</label><span class="item__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
+			</label><span class="todo__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
 				}
 			})
 			const todoListItems = [...todoList.children]
