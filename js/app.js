@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (this.value) {
 				todoArr.push(this);
 			}
+			this.createTodo()
 		}
 
 		createTodo() {
@@ -66,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		e.preventDefault()
 		newTodo = new Todo(input.value)
 		newTodo.addTodo()
-		newTodo.createTodo()
 		e.target.reset()
 	})
 
