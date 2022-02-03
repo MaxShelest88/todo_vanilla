@@ -9,20 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
 	class Todo {
 		constructor(value) {
 			this.value = value
+			this.checked = false
 		}
 
 		addTodo() {
 			if (this.value) {
-				todoArr.push(this.value);
+				todoArr.push(this);
 			}
+			console.log(todoArr);
 		}
 
 		createTodo() {
 			todoList.innerHTML = ''
 			todoArr.forEach((item, index) => {
-				todoList.innerHTML += `<li class="todo__item"><label class="checkbox">
+				if (!item.checked) {
+					todoList.innerHTML += `<li class="todo__item"><label class="checkbox">
 				<input class="checkbox__input" type="checkbox" value="1" name="form[]"><span class="checkbox__text"></span>
-			</label><span class="item__text">${toZero(index + 1)} ${item}</span><span class="todo__delete">x</span></li>`
+			</label><span class="item__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
+				} else {
+					todoList.innerHTML += `<li class="todo__item checked"><label class="checkbox">
+				<input class="checkbox__input" type="checkbox" value="1" name="form[]" checked><span class="checkbox__text"></span>
+			</label><span class="item__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
+				}
+
 			})
 			todoList.childNodes.forEach((el, index) => {
 				el.addEventListener('click', (e) => {
@@ -32,10 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
 						this.createTodo()
 					}
 					if (e.target.classList.contains('checkbox__input')) {
-						el.classList.toggle('checked')
+						el.classList.add('checked')
+						this.checked = true
+						todoArr[index] = this
+					} else {
+						el.classList.remove('checked')
+						this.checked = false
+						todoArr[index] = this
 					}
 				})
 			})
+
 		}
 	}
 
