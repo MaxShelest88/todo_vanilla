@@ -93,7 +93,9 @@ li {
 	background-color: rgba(255, 255, 255, 0.7);
 }
 .todo__list {
-	margin: 0px 0px 10px 0px;
+	margin: 0px 0px 20px 0px;
+	border-bottom: rgba(255, 255, 255, 0.5) solid 2px;
+	padding: 0px 0px 10px 0px;
 }
 
 .todo__item {
@@ -191,9 +193,13 @@ li {
 }
 
 .todo__clear {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.todo__btnclear {
 	height: 40px;
 	padding: 0 10px;
 	background-color: rgba(255, 255, 255, 0.3);
 	cursor: pointer;
-	text-align: center;
 }

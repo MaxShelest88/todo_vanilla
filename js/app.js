@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const form = document.querySelector('form')
 	const input = form.querySelector('.form__input input');
 	const todoList = document.querySelector('.todo__list');
-	const clearBtn = document.querySelector('.todo__clear')
+	const clearBtn = document.querySelector('.todo__btnclear')
 	const todoArr = []
 	const toZero = (num) => (num < 10) ? `0${num}` : num
 	let newTodo;
