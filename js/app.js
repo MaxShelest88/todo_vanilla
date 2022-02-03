@@ -34,32 +34,32 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			})
 			const todoListItems = [...todoList.children]
-			todoListItems.forEach((el, index) => {
+			todoListItems.forEach((el, index, arr) => {
 				el.addEventListener('click', (e) => {
 					let target = e.target
 					if (target.classList.contains('todo__delete')) {
-						this.deleteTodo(el, index, todoArr)
+						this.deleteTodo(index, todoArr)
 					}
 					this.checkTodo(e, el, index, todoArr)
 				})
 			})
 		}
 
-		deleteTodo(el, index, arr) {
-			el.remove()
+		deleteTodo(index, arr) {
 			arr.splice(index, 1)
 			this.createTodo()
 		}
 
 		checkTodo(e, el, index, arr) {
+			const text = [...el.children].filter(el => el.classList.contains('todo__text'))
 			if (e.target.classList.contains('checkbox__input') && !el.classList.contains('checked')) {
 				el.classList.add('checked')
-				this.checked = true
-				arr[index] = this
+				arr[index].checked = true;
+				
 			} else if (e.target.classList.contains('checkbox__input') && el.classList.contains('checked')) {
 				el.classList.remove('checked')
-				this.checked = false
-				arr[index] = this
+				arr[index].checked = false;
+				
 			}
 		}
 	}
