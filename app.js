@@ -38,17 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (e.target.classList.contains('todo__delete')) {
 						el.remove()
 						todoArr.splice(index, 1)
+						this.checked = false
 						this.createTodo()
 					}
-					if (e.target.classList.contains('checkbox__input')) {
+					if (e.target.classList.contains('checkbox__input') && !el.classList.contains('checked')) {
 						el.classList.add('checked')
 						this.checked = true
 						todoArr[index] = this
-					} else {
+					} else if (e.target.classList.contains('checkbox__input') && el.classList.contains('checked')) {
 						el.classList.remove('checked')
 						this.checked = false
 						todoArr[index] = this
 					}
+
 				})
 			})
 
