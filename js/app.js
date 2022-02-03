@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			})
 			const todoListItems = [...todoList.children]
-			todoListItems.forEach((el, index, arr) => {
+			todoListItems.forEach((el, index) => {
 				el.addEventListener('click', (e) => {
 					let target = e.target
 					if (target.classList.contains('todo__delete')) {
@@ -51,15 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		checkTodo(e, el, index, arr) {
-			const text = [...el.children].filter(el => el.classList.contains('todo__text'))
 			if (e.target.classList.contains('checkbox__input') && !el.classList.contains('checked')) {
 				el.classList.add('checked')
 				arr[index].checked = true;
-				
+
 			} else if (e.target.classList.contains('checkbox__input') && el.classList.contains('checked')) {
 				el.classList.remove('checked')
 				arr[index].checked = false;
-				
 			}
 		}
 	}
