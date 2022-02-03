@@ -110,18 +110,20 @@ li {
 }
 
 .todo__item:hover .todo__delete {
+	flex: 0 0 40px;
 	opacity: 1;
 	visibility: visible;
+	height: 100%;
+	background: url("../img/delete.svg") center no-repeat;
 }
 
 .todo__delete {
 	cursor: pointer;
-	display: inline-flex;
-	padding: 0px 20px;
-	justify-content: center;
-	align-items: center;
+	flex: 0 0 0px;
+	height: 0;
 	opacity: 0;
 	visibility: hidden;
+	background: black;
 	transition: opacity 0.3s ease 0s;
 }
 .todo__title {
@@ -147,7 +149,7 @@ li {
 	background: rgba(0, 0, 0, 0.466);
 }
 
-.todo__text{
+.todo__text {
 	flex: 1 1 auto;
 	position: relative;
 }
@@ -163,7 +165,6 @@ li {
 	transform: translate(0%, -50%);
 	display: none;
 }
-
 
 .checkbox__text {
 	display: flex;
@@ -188,7 +189,7 @@ li {
 	display: block;
 }
 
-.todo__clear{
+.todo__clear {
 	height: 40px;
 	padding: 0 10px;
 	background-color: rgba(255, 255, 255, 0.3);
