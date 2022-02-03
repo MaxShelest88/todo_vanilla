@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const form = document.querySelector('form')
 	const input = form.querySelector('.form__input input');
 	const todoList = document.querySelector('.todo__list');
+	const clearBtn = document.querySelector('.todo__clear')
 	const todoArr = []
 	const toZero = (num) => (num < 10) ? `0${num}` : num
+	let newTodo;
 
 	class Todo {
 		constructor(value) {
@@ -16,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (this.value) {
 				todoArr.push(this);
 			}
-			console.log(todoArr);
 		}
 
 		createTodo() {
@@ -31,38 +32,49 @@ document.addEventListener('DOMContentLoaded', () => {
 				<input class="checkbox__input" type="checkbox" value="1" name="form[]" checked><span class="checkbox__text"></span>
 			</label><span class="item__text">${toZero(index + 1)} ${item.value}</span><span class="todo__delete">x</span></li>`
 				}
-
 			})
-			todoList.childNodes.forEach((el, index) => {
+			const todoListItems = [...todoList.children]
+			todoListItems.forEach((el, index) => {
 				el.addEventListener('click', (e) => {
-					if (e.target.classList.contains('todo__delete')) {
-						el.remove()
-						todoArr.splice(index, 1)
-						this.checked = false
-						this.createTodo()
+					let target = e.target
+					if (target.classList.contains('todo__delete')) {
+						this.deleteTodo(el, index, todoArr)
 					}
-					if (e.target.classList.contains('checkbox__input') && !el.classList.contains('checked')) {
-						el.classList.add('checked')
-						this.checked = true
-						todoArr[index] = this
-					} else if (e.target.classList.contains('checkbox__input') && el.classList.contains('checked')) {
-						el.classList.remove('checked')
-						this.checked = false
-						todoArr[index] = this
-					}
-
+					this.checkTodo(e, el, index, todoArr)
 				})
 			})
+		}
 
+		deleteTodo(el, index, arr) {
+			el.remove()
+			arr.splice(index, 1)
+			this.createTodo()
+		}
+
+		checkTodo(e, el, index, arr) {
+			if (e.target.classList.contains('checkbox__input') && !el.classList.contains('checked')) {
+				el.classList.add('checked')
+				this.checked = true
+				arr[index] = this
+			} else if (e.target.classList.contains('checkbox__input') && el.classList.contains('checked')) {
+				el.classList.remove('checked')
+				this.checked = false
+				arr[index] = this
+			}
 		}
 	}
 
 	form.addEventListener('submit', (e) => {
 		e.preventDefault()
-		const newTodo = new Todo(input.value)
+		newTodo = new Todo(input.value)
 		newTodo.addTodo()
 		newTodo.createTodo()
 		e.target.reset()
+	})
+
+	clearBtn.addEventListener('click', () => {
+		todoArr.length = 0
+		newTodo.createTodo()
 	})
 
 })

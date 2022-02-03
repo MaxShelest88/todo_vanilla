@@ -93,6 +93,7 @@ li {
 	background-color: rgba(255, 255, 255, 0.7);
 }
 .todo__list {
+	margin: 0px 0px 10px 0px;
 }
 
 .todo__item {
@@ -183,4 +184,11 @@ li {
 
 .todo__item.checked::after {
 	display: block;
+}
+
+.todo__clear{
+	height: 40px;
+	padding: 0 10px;
+	background-color: rgba(255, 255, 255, 0.3);
+	cursor: pointer;
 }
