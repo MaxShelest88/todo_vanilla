@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+	'use strict'
 	const form = document.querySelector('form')
 	const input = form.querySelector('.form__input input');
 	const todoList = document.querySelector('.todo__list');
@@ -27,14 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (!item.checked) {
 					todoList.innerHTML += `<li class="todo__item"><label class="checkbox">
 				<input class="checkbox__input" type="checkbox" value="1" name="form[]"><span class="checkbox__text"></span>
-			</label><div class="todo__text">${toZero(index + 1)} ${item.value}</div><div class="todo__delete"></div></li>`
+			</label><div>${toZero(index + 1)}</div><div class="todo__text">${item.value}</div><div class="todo__delete"></div></li>`
 				} else {
 					todoList.innerHTML += `<li class="todo__item checked"><label class="checkbox">
 				<input class="checkbox__input" type="checkbox" value="1" name="form[]" checked><span class="checkbox__text"></span>
-			</label><div class="todo__text">${toZero(index + 1)} ${item.value}</div><div class="todo__delete"></div></li>`
+			</label><div>${toZero(index + 1)}</div><div class="todo__text">${item.value}</div><div class="todo__delete"></div></li>`
 				}
 			})
 			const todoListItems = [...todoList.children]
+
 			todoListItems.forEach((el, index) => {
 				el.addEventListener('click', (e) => {
 					let target = e.target
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						this.deleteTodo(index, todoArr)
 					}
 					this.checkTodo(e, el, index, todoArr)
+					this.editTodo(el, index, todoArr)
 				})
 			})
 		}
@@ -49,6 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		deleteTodo(index, arr) {
 			arr.splice(index, 1)
 			this.createTodo()
+		}
+
+		editTodo(el, index, arr) {
+			el.addEventListener('dblclick', (e) => {
+				let target = e.target;
+				if (target.classList.contains('todo__text')) {
+					target.contentEditable = true;
+				}
+				let oldValue;
+				target.onfocus = () => {
+					oldValue = target.innerHTML
+				}
+				target.onblur = () => {
+					const newValue = target.innerHTML
+					if (oldValue != newValue) {
+						arr[index].value = newValue;
+					}
+				}
+			})
 		}
 
 		checkTodo(e, el, index, arr) {
