@@ -34,18 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			</label><div>${toZero(index + 1)}</div><div class="todo__text">${item.value}</div><div class="todo__delete"></div></li>`
 				}
 			})
-			const todoListItems = [...todoList.children]
 
-			todoListItems.forEach((el, index) => {
-				el.addEventListener('click', (e) => {
-					let target = e.target
-					if (target.classList.contains('todo__delete')) {
-						this.deleteTodo(index, todoArr)
-					}
-					this.checkTodo(e, el, index, todoArr)
-					this.editTodo(el, index, todoArr)
+			const todoListItems = [...todoList.children]
+			
+			if (todoListItems.length > 0) {
+				todoListItems.forEach((el, index) => {
+					el.addEventListener('click', (e) => {
+						let target = e.target
+						if (target.classList.contains('todo__delete')) {
+							this.deleteTodo(index, todoArr)
+						}
+						this.checkTodo(e, el, index, todoArr)
+						this.editTodo(el, index, todoArr)
+					})
 				})
-			})
+			}
 		}
 
 		deleteTodo(index, arr) {
@@ -68,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (oldValue != newValue) {
 						arr[index].value = newValue;
 					}
+					target.contentEditable = false;
 				}
 			})
 		}
