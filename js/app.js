@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		constructor(value) {
 			this.value = value
 			this.checked = false
+			this.addTodo()
 		}
 
 		addTodo() {
@@ -91,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	form.addEventListener('submit', (e) => {
 		e.preventDefault()
 		newTodo = new Todo(input.value)
-		newTodo.addTodo()
 		e.target.reset()
 	})
 
