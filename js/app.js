@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 
 			const todoListItems = [...todoList.children]
-			
+
 			if (todoListItems.length > 0) {
 				todoListItems.forEach((el, index) => {
 					el.addEventListener('click', (e) => {
